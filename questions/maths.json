@@ -34,7 +34,7 @@
 
   {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"The median of 3, 7, 8, 10, 12 is:","choices":["7","8","9","10"],"answerIndex":1,"explanation":"Middle value is 8."},
   {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"The mode of 2, 5, 5, 6, 7 is:","choices":["2","5","6","7"],"answerIndex":1,"explanation":"Most frequent value is 5."},
-  {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"The range of 4, 9, 11, 15 is:","choices":["6","10","11","19"],"answerIndex":2,"explanation":"Range = max − min = 15 − 4 = 11."}
+  {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"The range of 4, 9, 11, 15 is:","choices":["6","10","11","19"],"answerIndex":2,"explanation":"Range = max − min = 15 − 4 = 11."},
   {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"Averages: which uses all data values?","choices":["Mode","Median","Mean","Range"],"answerIndex":2,"explanation":"Mean sums all values and divides by count."},
   {"subject":"Maths","topic":"Statistics","examBoard":"Edexcel","q":"If the mean of 5 numbers is 8, their total is:","choices":["13","35","40","45"],"answerIndex":2,"explanation":"Mean×count = 8×5=40."},
 
