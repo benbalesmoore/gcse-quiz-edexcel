@@ -29,9 +29,6 @@ const restartBtn = $("restartBtn");
 
 const FILES = [
   "questions/maths.json",
-  "questions/english-language.json",
-  "questions/biology.json",
-  "questions/physics.json"
 ];
 
 let bank = [];
