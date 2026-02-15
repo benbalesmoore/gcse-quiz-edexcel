@@ -66,14 +66,43 @@ function uniqueSorted(arr) {
 }
 
 async function loadBank() {
-  const parts = await Promise.all(FILES.map(async (p) => {
-    const r = await fetch(p, { cache: "no-store" });
-    if (!r.ok) throw new Error(`Failed to load ${p}: ${r.status}`);
-    const json = await r.json();
-    if (!Array.isArray(json)) throw new Error(`${p} is not an array`);
-    return json;
-  }));
-  return parts.flat();
+  const parts = [];
+  const problems = [];
+
+  for (const p of FILES) {
+    try {
+      const r = await fetch(p, { cache: "no-store" });
+      if (!r.ok) {
+        problems.push(`${p} → HTTP ${r.status}`);
+        continue;
+      }
+
+      const text = await r.text();
+      if (!text.trim()) {
+        problems.push(`${p} → empty file`);
+        continue;
+      }
+
+      let json;
+      try {
+        json = JSON.parse(text);
+      } catch (e) {
+        problems.push(`${p} → invalid JSON (${e.message})`);
+        continue;
+      }
+
+      if (!Array.isArray(json)) {
+        problems.push(`${p} → JSON is not an array`);
+        continue;
+      }
+
+      parts.push(json);
+    } catch (e) {
+      problems.push(`${p} → fetch error (${e.message})`);
+    }
+  }
+
+  return { bank: parts.flat(), problems };
 }
 
 function buildSubjectSelector() {
