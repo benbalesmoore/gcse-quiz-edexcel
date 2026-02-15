@@ -305,8 +305,34 @@ flagBtn.addEventListener("click", toggleFlag);
 quitBtn.addEventListener("click", quitQuiz);
 restartBtn.addEventListener("click", restart);
 
-// Boot
 (async () => {
-  bank = await loadBank();
+  const result = await loadBank();
+  bank = result.bank;
+
+  if (result.problems.length) {
+    const msg = document.createElement("div");
+    msg.style.border = "1px solid #fecaca";
+    msg.style.background = "#fef2f2";
+    msg.style.padding = "10px 12px";
+    msg.style.borderRadius = "12px";
+    msg.style.marginBottom = "12px";
+    msg.style.color = "#991b1b";
+    msg.innerHTML = `<b>Question bank load issues:</b><br>${result.problems.map(x => `• ${x}`).join("<br>")}`;
+    document.getElementById("setupView").prepend(msg);
+  }
+
+  if (!bank.length) {
+    const msg = document.createElement("div");
+    msg.style.border = "1px solid #fde68a";
+    msg.style.background = "#fffbeb";
+    msg.style.padding = "10px 12px";
+    msg.style.borderRadius = "12px";
+    msg.style.marginBottom = "12px";
+    msg.style.color = "#92400e";
+    msg.innerHTML = `<b>No questions loaded.</b> Check your JSON files in /questions/.`;
+    document.getElementById("setupView").prepend(msg);
+    return;
+  }
+
   buildSubjectSelector();
 })();
