@@ -1,1 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GCSE Edexcel Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="wrap">
+      <h1>GCSE Quiz (Edexcel-aligned)</h1>
+      <p>Pick a subject → get a random 10-question quiz. Original practice questions (not past-paper items).</p>
+    </div>
+  </header>
 
+  <main class="wrap grid">
+    <section class="card">
+      <div id="setupView">
+        <h2>Start a quiz</h2>
+        <div class="controls">
+          <div>
+            <label for="subjectSel">Subject</label>
+            <select id="subjectSel"></select>
+          </div>
+
+          <div>
+            <label for="countSel">Questions per quiz</label>
+            <input id="countSel" type="number" min="1" step="1" value="10" />
+            <div class="hint">Default 10. You can change this any time.</div>
+          </div>
+
+          <div class="actions">
+            <button id="startBtn">Start quiz</button>
+            <button class="secondary" id="shuffleBtn" type="button">Shuffle bank</button>
+          </div>
+
+          <details>
+            <summary>How questions are stored</summary>
+            <div class="hint">
+              Each subject lives in <code>questions/*.json</code>. Add more items there; the site will pick them up automatically.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div id="quizView" class="hidden">
+        <div class="topbar">
+          <div class="pill" id="statusPill">Q 1 / 10</div>
+          <div class="pill" id="scorePill">Score: 0</div>
+        </div>
+
+        <div class="progress" aria-label="Progress">
+          <div id="progressBar"></div>
+        </div>
+
+        <div class="meta" id="metaLine"></div>
+        <div class="qtitle" id="questionText"></div>
+
+        <form id="answerForm">
+          <div class="answers" id="answersBox"></div>
+          <div class="actions">
+            <button type="submit" id="checkBtn">Check answer</button>
+            <button type="button" class="ghost" id="flagBtn">Flag</button>
+            <button type="button" class="secondary" id="nextBtn" disabled>Next</button>
+            <button type="button" class="ghost" id="quitBtn">Quit</button>
+          </div>
+        </form>
+
+        <div id="feedbackBox" class="feedback hidden"></div>
+      </div>
+
+      <div id="resultsView" class="hidden">
+        <h2>Results</h2>
+        <p id="resultsSummary" class="hint"></p>
+        <div class="actions">
+          <button id="restartBtn">Start another quiz</button>
+        </div>
+        <div id="reviewBox"></div>
+      </div>
+    </section>
+
+    <aside class="card side">
+      <h3>What it does</h3>
+      <ul>
+        <li>Loads subject banks from JSON</li>
+        <li>Random 10 questions per attempt</li>
+        <li>Score, progress, explanations</li>
+        <li>Flag questions for review</li>
+      </ul>
+      <hr />
+      <h3>Next upgrades</h3>
+      <ul>
+        <li>Topic filter</li>
+        <li>Difficulty tagging</li>
+        <li>Save results to LocalStorage</li>
+        <li>CSV import</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
